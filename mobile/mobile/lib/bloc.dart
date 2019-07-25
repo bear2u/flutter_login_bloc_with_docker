@@ -10,7 +10,6 @@ class Bloc {
 
   loginProc(User user) {
     // to Repo.
-
     print(user.id);
   }
 

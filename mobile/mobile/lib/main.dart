@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile/provider.dart';
+import 'package:mobile/user.dart';
 
 void main() => runApp(
   Provider(
@@ -24,11 +25,16 @@ class _MyLoginPage extends StatelessWidget {
   TextEditingController _idController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
 
-  _loginProc() {
+  _loginProc(context) {
+    final bloc = Provider.of(context);
     final id = _idController.text;
     final pwd = _pwdController.text;
 
-    print('id => $id, pwd => $pwd');
+    // print('id => $id, pwd => $pwd');
+    bloc.loginProc(User(
+      id: id,
+      pwd: pwd
+    ));
   }
   @override
   Widget build(BuildContext context) {
@@ -49,7 +55,9 @@ class _MyLoginPage extends StatelessWidget {
               children: <Widget>[
                 RaisedButton(
                   child: Text('Login'),
-                  onPressed: _loginProc,
+                  onPressed: () {
+                    _loginProc(context);
+                  },
                 )
               ],
             ),
