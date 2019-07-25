@@ -1,4 +1,4 @@
-package com.example.flutter_docker_tutorial;
+package com.example.mobile;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
