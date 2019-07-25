@@ -1,4 +1,4 @@
-# flutter bloc 을 이용한 심플 로그인 기능
+# flutter bloc + docker + Node + mongodb
 
 time : 1hour
 
