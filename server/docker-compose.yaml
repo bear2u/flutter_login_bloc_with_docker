@@ -1,0 +1,47 @@
+version: "3"
+services:
+  tutorial-app:                     
+    links:
+      - tutorial-mongo
+    build:
+      dockerfile: Dockerfile
+      context: .
+    # command: nodemon --debug=5858
+    volumes:
+      - ./:/app      
+      - /app/node_modules                      
+    networks:
+      - backend  
+    depends_on:        
+      - tutorial-mongo   
+  tutorial-mongo:
+    container_name: tutorial-mongo
+    image: mongo
+    volumes:
+      - data:/data/db
+    ports:
+      - "27017:27017" 
+    networks:
+      - backend
+
+  tutorial-nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - '4000:80' 
+    networks:
+      - backend
+    links:
+      - tutorial-app  
+    depends_on:
+      - tutorial-app  
+
+networks: 
+  backend:
+    driver: bridge
+
+volumes:
+  data:
+    driver: local   

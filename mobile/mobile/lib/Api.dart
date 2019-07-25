@@ -9,11 +9,13 @@ class Api implements Source {
   @override
   Future<bool> loginProc(User user) async {
     // 서버 통신
+
     final response =
-      await http.get('http://b8346a33.ngrok.io/api/auth');
+      await http.post('http://b8346a33.ngrok.io/auth', body: user.toJson());
 
     if(response.statusCode == 200) {
-      final isLogin = jsonDecode(response.body).result;
+      final data = jsonDecode(response.body);      
+      final isLogin = data['result'];
       return isLogin;
     } else {
       return false;

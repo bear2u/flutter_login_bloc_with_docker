@@ -11,10 +11,10 @@ class User {
     );
   }
 
-  Map<String,String> toJson(User user) {
+  Map<String,String> toJson() {
     return {
-      id: user.id,
-      pwd : user.pwd
+      "id": id,
+      "pwd" : pwd
     };
   }
 
