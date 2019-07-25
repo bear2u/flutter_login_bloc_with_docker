@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobile/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+  Provider(
+    child: MyApp()
+  ));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -16,9 +20,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-_loginProc() {}
-
 class _MyLoginPage extends StatelessWidget {
+  TextEditingController _idController = new TextEditingController();
+  TextEditingController _pwdController = new TextEditingController();
+
+  _loginProc() {
+    final id = _idController.text;
+    final pwd = _pwdController.text;
+
+    print('id => $id, pwd => $pwd');
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +38,12 @@ class _MyLoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextField(),
-            TextField(),
+            TextField(
+              controller: _idController,
+            ),
+            TextField(
+              controller: _pwdController,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
