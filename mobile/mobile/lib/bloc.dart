@@ -5,7 +5,7 @@ import 'package:rxdart/rxdart.dart';
 class Bloc {
   final _repository = Repository();
   //Input
-  final _login = PublishSubject<User>();
+  final _login = PublishSubject<bool>();
 
   //Output
   get login => _login.stream;
@@ -13,8 +13,8 @@ class Bloc {
   loginProc(User user) async {
     // to Repo.
     final isLogin = await _repository.loginProc(user);
-    print(isLogin);
-  }
+    _login.sink.add(isLogin);
+  } 
 
   dispose() {
     _login.close();

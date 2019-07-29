@@ -11,7 +11,7 @@ class Api implements Source {
     // 서버 통신
 
     final response =
-      await http.post('https://48340ef7.ngrok.io/api/auth', body: user.toJson());
+      await http.post('http://eec7e973.ngrok.io/api/auth', body: user.toJson());
 
     if(response.statusCode == 200) {
       final data = jsonDecode(response.body);      
