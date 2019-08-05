@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/provider.dart';
+import 'package:mobile/user.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -15,6 +17,7 @@ class RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Register'),
@@ -59,6 +62,11 @@ class RegisterState extends State<Register> {
                     if(_form.validate()) {
                       // TODO 유효성 체크 완료
                       _form.save();
+                      final user = User(
+                        id: _id,
+                        pwd: _pwd
+                      );
+                      bloc.addUser(user);
                       print('유효성 체크 통과 , $_id, $_pwd');
                     } else {
                       print('유효성 체크 실패');

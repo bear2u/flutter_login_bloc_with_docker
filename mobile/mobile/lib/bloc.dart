@@ -19,5 +19,9 @@ class Bloc {
   dispose() {
     _login.close();
   }
+
+  void addUser(User user) async {
+    await _repository.addUser(user);
+  }
   
 }

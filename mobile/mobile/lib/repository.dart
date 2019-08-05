@@ -7,8 +7,11 @@ class Repository {
   ];
 
   Future<bool> loginProc(User user) => sources[0].loginProc(user);
+
+  addUser(User user) => sources[0].addUser(user);
 }
 
 abstract class Source {
   Future<bool> loginProc(User user);
+  Future<void> addUser(User user);
 }
